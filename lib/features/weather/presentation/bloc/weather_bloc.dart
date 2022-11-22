@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:smart_living/features/smart/presentation/bloc/weather_event.dart';
-import 'package:smart_living/features/smart/presentation/bloc/weather_state.dart';
+import 'package:smart_living/features/weather/presentation/bloc/weather_event.dart';
+import 'package:smart_living/features/weather/presentation/bloc/weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(WeatherInitial()) {

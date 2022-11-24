@@ -19,7 +19,7 @@ extension CustomeTextStyle on ThemeData {
   TextStyle get smallStandardBody => TextStyle(
         fontSize: 14,
         fontFamily: fontFamily,
-        fontWeight: FontWeight.w400,
+        fontWeight: FontWeight.w100,
         color: textBlack,
       );
   TextStyle get smallEmphasisBody => TextStyle(

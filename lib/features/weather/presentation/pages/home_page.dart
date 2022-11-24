@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,8 +29,16 @@ class _HomePageState extends State<HomePage> {
     {'Exploration': SvgAssets.exploration}: {27.65: 20.0},
     {'Briefing': SvgAssets.brief}: {28.0: 20.0},
   };
+  final tabNameList = ['Smartboard', 'Recipes', 'Integrations'];
 
   String temperature = '0';
+
+  StreamController<bool> switchStreamController =
+      StreamController<bool>.broadcast();
+  StreamController<String> tabStreamController =
+      StreamController<String>.broadcast();
+  StreamController<String> selectedIconStreamController =
+      StreamController<String>.broadcast();
 
   @override
   Widget build(BuildContext context) {
@@ -136,19 +147,34 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(height: 24),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                CustomTabItem(
-                                  isSelected: true,
-                                  title: 'Smartboard',
-                                ),
-                                CustomTabItem(
-                                  isSelected: false,
-                                  title: 'Recipes',
-                                ),
-                                CustomTabItem(
-                                  isSelected: false,
-                                  title: 'Integrations',
-                                ),
+                              children: [
+                                ...tabNameList.map((e) {
+                                  return StreamBuilder<String>(
+                                      stream: tabStreamController.stream,
+                                      builder: (context, snapshot) {
+                                        var data = snapshot.data ?? '';
+                                        return InkWell(
+                                          onTap: () =>
+                                              tabStreamController.add(e),
+                                          child: CustomTabItem(
+                                            isSelected: e == data,
+                                            title: e,
+                                          ),
+                                        );
+                                      });
+                                })
+                                // CustomTabItem(
+                                //   isSelected: true,
+                                //   title: 'Smartboard',
+                                // ),
+                                // CustomTabItem(
+                                //   isSelected: false,
+                                //   title: 'Recipes',
+                                // ),
+                                // CustomTabItem(
+                                //   isSelected: false,
+                                //   title: 'Integrations',
+                                // ),
                               ],
                             ),
                           ],
@@ -164,29 +190,38 @@ class _HomePageState extends State<HomePage> {
                             return Padding(
                               padding: EdgeInsets.only(
                                   right: 43, left: index == 0 ? 43 : 0),
-                              child: CustomIconBox(
-                                isSelected: index == 0,
-                                height: iconBoxesMap.values
-                                    .toList()[index]
-                                    .keys
-                                    .toList()
-                                    .first,
-                                width: iconBoxesMap.values
-                                    .toList()[index]
-                                    .values
-                                    .toList()
-                                    .first,
-                                path: iconBoxesMap.keys
-                                    .toList()[index]
-                                    .values
-                                    .toList()
-                                    .first,
-                                title: iconBoxesMap.keys
-                                    .toList()[index]
-                                    .keys
-                                    .toList()
-                                    .first,
-                              ),
+                              child: StreamBuilder<String>(
+                                  stream: selectedIconStreamController.stream,
+                                  builder: (context, snapshot) {
+                                    var title = iconBoxesMap.keys
+                                        .toList()[index]
+                                        .keys
+                                        .toList()
+                                        .first;
+                                    var data = snapshot.data ?? '';
+                                    return InkWell(
+                                      onTap: () => selectedIconStreamController
+                                          .add(title),
+                                      child: CustomIconBox(
+                                          isSelected: data == title,
+                                          height: iconBoxesMap.values
+                                              .toList()[index]
+                                              .keys
+                                              .toList()
+                                              .first,
+                                          width: iconBoxesMap.values
+                                              .toList()[index]
+                                              .values
+                                              .toList()
+                                              .first,
+                                          path: iconBoxesMap.keys
+                                              .toList()[index]
+                                              .values
+                                              .toList()
+                                              .first,
+                                          title: title),
+                                    );
+                                  }),
                             );
                           },
                         ),
@@ -250,10 +285,14 @@ class _HomePageState extends State<HomePage> {
                                       Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Row(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
                                               Text(
                                                 '$temperature°C',
@@ -272,7 +311,7 @@ class _HomePageState extends State<HomePage> {
                                               )
                                             ],
                                           ),
-                                          const SizedBox(),
+                                          const SizedBox(height: 8),
                                           Text(
                                             'İzmir, Urla',
                                             style: theme.tertiaryHeading
@@ -326,6 +365,120 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
+                            const SizedBox(height: 16),
+                            Container(
+                              height: 160,
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: theme.white.withOpacity(0.72),
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: theme.textBlack.withOpacity(0.08),
+                                      blurRadius: 16,
+                                      offset: const Offset(0, 4))
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        '4',
+                                        style: theme.primaryHeading,
+                                      ),
+                                      SvgPicture.asset(
+                                        SvgAssets.subtract,
+                                        width: 24,
+                                        height: 24,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    'sources connected',
+                                    style: theme.emphasisBody,
+                                  ),
+                                  const Spacer(),
+                                  Image.asset(
+                                    ImageAssets.sourcesList,
+                                    width: 124,
+                                    height: 40,
+                                  )
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              height: 154,
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                color: theme.white.withOpacity(0.72),
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: theme.textBlack.withOpacity(0.08),
+                                      blurRadius: 16,
+                                      offset: const Offset(0, 4))
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Suggested Recipe',
+                                        style: theme.tertiaryHeading,
+                                      ),
+                                      SvgPicture.asset(
+                                        SvgAssets.refresh,
+                                        width: 29,
+                                        height: 26,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    'Morning',
+                                    style: theme.emphasisBody,
+                                  ),
+                                  Text(
+                                    'Suggest cafes at 10:00 AM, weekdays',
+                                    style: theme.smallStandardBody,
+                                  ),
+                                  const Spacer(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      StreamBuilder<bool>(
+                                          stream: switchStreamController.stream,
+                                          builder: (context, snapshot) {
+                                            var data = snapshot.data ?? false;
+                                            return CupertinoSwitch(
+                                              activeColor: theme.orange,
+                                              trackColor: theme.textBlack
+                                                  .withOpacity(0.28),
+                                              value: data,
+                                              onChanged: (v) =>
+                                                  switchStreamController.add(v),
+                                            );
+                                          }),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(height: 24),
                           ],
                         ),
                       )

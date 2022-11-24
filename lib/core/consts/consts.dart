@@ -1,14 +1,14 @@
 class ServerPaths {
-  static const countris = 'https://restcountries.com/v3.1/all';
+  static const countris = 'https://api.open-meteo.com/v1/forecast?latitude=38.41&longitude=27.14&hourly=temperature_2m&current_weather=true';
 }
 
 class ImageAssets {
   static const _path = 'assets/images/';
   static const background = '${_path}background.png';
-    static const activeRecipes = '${_path}active_recipes.png';
-    static const activeList = '${_path}active_list.png';
-    static const messagesAvatar = '${_path}messages_avatar.png';
-
+  static const activeRecipes = '${_path}active_recipes.png';
+  static const activeList = '${_path}active_list.png';
+  static const messagesAvatar = '${_path}messages_avatar.png';
+  static const cloudly = '${_path}cloudly.png';
 }
 
 class SvgAssets {

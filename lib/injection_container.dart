@@ -19,9 +19,11 @@ Future<void> init() async {
 
 void _injectWeather() {
   //bloc
-  serviceLocator.registerFactory(() => WeatherBloc());
+  serviceLocator
+      .registerFactory(() => WeatherBloc(fetchWeather: serviceLocator()));
   //usecase
-  serviceLocator.registerLazySingleton(() => FetchWeather(repository: serviceLocator()));
+  serviceLocator
+      .registerLazySingleton(() => FetchWeather(repository: serviceLocator()));
 
   //repositories
   serviceLocator.registerLazySingleton<WeathersRepository>(

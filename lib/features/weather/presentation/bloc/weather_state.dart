@@ -9,7 +9,12 @@ abstract class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
-class GetWeatherInfoState extends WeatherState {}
+class GetWeatherInfoState extends WeatherState {
+  const GetWeatherInfoState({required this.temperature});
+  final String temperature;
+  @override
+  List<Object> get props => [temperature];
+}
 
 class WeatherLoading extends WeatherState {}
 

@@ -5,6 +5,7 @@ extension CustomeColor on ThemeData {
   Color get orange => const Color(0xFFFF8933);
   Color get whiteBackground => const Color(0xFFF5F5F5);
   Color get white => const Color(0xFFFFFFFF);
+  Color get purple => const Color(0xFF6C72E9);
 }
 
 extension CustomeTextStyle on ThemeData {
@@ -29,6 +30,12 @@ extension CustomeTextStyle on ThemeData {
       );
   TextStyle get emphasisBody => TextStyle(
         fontSize: 16,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w500,
+        color: textBlack,
+      );
+  TextStyle get tertiaryHeading => TextStyle(
+        fontSize: 18,
         fontFamily: fontFamily,
         fontWeight: FontWeight.w500,
         color: textBlack,

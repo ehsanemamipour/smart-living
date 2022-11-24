@@ -163,7 +163,6 @@ class _HomePageState extends State<HomePage> {
                                         );
                                       });
                                 })
-                             
                               ],
                             ),
                           ],
@@ -221,7 +220,6 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CustomCard(
                                   title: '4',
@@ -234,6 +232,7 @@ class _HomePageState extends State<HomePage> {
                                   bottomWidget:
                                       Image.asset(ImageAssets.activeRecipes),
                                 ),
+                                const SizedBox(width: 15),
                                 CustomCard(
                                   title: '2',
                                   subtitle: 'active lists',
@@ -326,7 +325,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                             const SizedBox(height: 16),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 CustomCard(
                                   title: '24',
@@ -339,6 +337,7 @@ class _HomePageState extends State<HomePage> {
                                   bottomWidget:
                                       Image.asset(ImageAssets.messagesAvatar),
                                 ),
+                                const SizedBox(width: 15),
                                 CustomCard(
                                   title: '13:00',
                                   subtitle: 'La Pena, Urla',

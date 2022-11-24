@@ -27,4 +27,5 @@ class SvgAssets {
   static const dining = '${_path}dining.svg';
   static const refresh = '${_path}refresh.svg';
   static const subtract = '${_path}subtract.svg';
+  static const add = '${_path}add.svg';
 }

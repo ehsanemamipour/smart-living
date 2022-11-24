@@ -21,6 +21,12 @@ extension CustomeTextStyle on ThemeData {
         fontWeight: FontWeight.w400,
         color: textBlack,
       );
+  TextStyle get smallEmphasisBody => TextStyle(
+        fontSize: 14,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w500,
+        color: textBlack,
+      );
   TextStyle get emphasisBody => TextStyle(
         fontSize: 16,
         fontFamily: fontFamily,

@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:smart_living/core/consts/consts.dart';
 import 'package:smart_living/core/theme/theme.dart';
 
-class CustomSearchBar extends StatefulWidget {
+class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     required this.hintText,
     this.onChanged,
@@ -14,28 +14,16 @@ class CustomSearchBar extends StatefulWidget {
   final Function(String)? onChanged;
 
   @override
-  State<CustomSearchBar> createState() => _CustomSearchBarState();
-}
-
-class _CustomSearchBarState extends State<CustomSearchBar> {
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Container(
       height: 56,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(60),
-          color: Colors.transparent,
-          border: Border.all(color: theme.textBlack.withOpacity(0.1), width: 2)
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: theme.outerShadow.withOpacity(0.18),
-          //     offset: const Offset(0, 4),
-          //     blurRadius: 12,
-          //   )
-          // ],
-          ),
+        borderRadius: BorderRadius.circular(60),
+        color: Colors.transparent,
+        border: Border.all(color: theme.textBlack.withOpacity(0.1), width: 2),
+      ),
       child: Row(
         children: [
           const SizedBox(width: 20),
@@ -49,10 +37,10 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           Expanded(
             child: TextField(
               style: theme.emphasisBody,
-              onChanged: widget.onChanged,
+              onChanged: onChanged,
               cursorColor: theme.textBlack,
               decoration: InputDecoration(
-                hintText: widget.hintText,
+                hintText: hintText,
                 hintStyle: theme.emphasisBody.copyWith(
                   color: theme.textBlack.withOpacity(
                     0.28,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_living/core/consts/consts.dart';
 import 'package:smart_living/core/theme/theme.dart';
+import 'package:smart_living/features/weather/presentation/widgets/custom_icon_box.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_search_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,9 +13,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final Map iconBoxesMap = {
+    {'All': SvgAssets.all}: {18.0: 18.0},
+    {'Home': SvgAssets.home}: {23.52: 24.0},
+    {'Exploration': SvgAssets.exploration}: {27.65: 20.0},
+    {'Briefing': SvgAssets.brief}: {28.0: 20.0},
+  };
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
     return SafeArea(
       child: Scaffold(
           body: Stack(
@@ -108,8 +117,43 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: iconBoxesMap.keys.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding:
+                          EdgeInsets.only(right: 43, left: index == 0 ? 43 : 0),
+                      child: CustomIconBox(
+                        isSelected: index == 0,
+                        height: iconBoxesMap.values
+                            .toList()[index]
+                            .keys
+                            .toList()
+                            .first,
+                        width: iconBoxesMap.values
+                            .toList()[index]
+                            .values
+                            .toList()
+                            .first,
+                        path: iconBoxesMap.keys
+                            .toList()[index]
+                            .values
+                            .toList()
+                            .first,
+                        title: iconBoxesMap.keys
+                            .toList()[index]
+                            .keys
+                            .toList()
+                            .first,
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
-          )
+          ),
         ],
       )),
     );

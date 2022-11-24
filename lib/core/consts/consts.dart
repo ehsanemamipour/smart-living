@@ -1,5 +1,6 @@
 class ServerPaths {
-  static const countris = 'https://api.open-meteo.com/v1/forecast?latitude=38.41&longitude=27.14&hourly=temperature_2m&current_weather=true';
+  static const countris =
+      'https://api.open-meteo.com/v1/forecast?latitude=38.41&longitude=27.14&hourly=temperature_2m&current_weather=true';
 }
 
 class ImageAssets {
@@ -28,4 +29,9 @@ class SvgAssets {
   static const refresh = '${_path}refresh.svg';
   static const subtract = '${_path}subtract.svg';
   static const add = '${_path}add.svg';
+  static const smart = '${_path}smart.svg';
+  static const bottomHome = '${_path}bottom_home.svg';
+  static const devices = '${_path}devices.svg';
+  static const lifeStyle = '${_path}life_style.svg';
+  static const maps = '${_path}maps.svg';
 }

@@ -28,6 +28,12 @@ extension CustomeTextStyle on ThemeData {
         fontWeight: FontWeight.w500,
         color: textBlack,
       );
+  TextStyle get extralSmallBody => TextStyle(
+        fontSize: 10,
+        fontFamily: fontFamily,
+        fontWeight: FontWeight.w500,
+        color: textBlack,
+      );
   TextStyle get emphasisBody => TextStyle(
         fontSize: 16,
         fontFamily: fontFamily,

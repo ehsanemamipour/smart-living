@@ -25,7 +25,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     emit(
       result.fold(
         (error) => WeatherError(message: error.message),
-        (weather) => GetWeatherInfoState(temperature: weather.temperature),
+        (weather) =>
+            GetWeatherInfoState(temperature: weather.temperature.toString()),
       ),
     );
   }

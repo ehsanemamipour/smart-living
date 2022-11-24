@@ -5,7 +5,7 @@ class Weather extends Equatable {
     required this.temperature,
   });
 
-  final String temperature;
+  final double? temperature;
 
   @override
   List<Object?> get props => [temperature];

@@ -163,18 +163,7 @@ class _HomePageState extends State<HomePage> {
                                         );
                                       });
                                 })
-                                // CustomTabItem(
-                                //   isSelected: true,
-                                //   title: 'Smartboard',
-                                // ),
-                                // CustomTabItem(
-                                //   isSelected: false,
-                                //   title: 'Recipes',
-                                // ),
-                                // CustomTabItem(
-                                //   isSelected: false,
-                                //   title: 'Integrations',
-                                // ),
+                             
                               ],
                             ),
                           ],

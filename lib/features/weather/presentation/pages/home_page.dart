@@ -4,6 +4,7 @@ import 'package:smart_living/core/consts/consts.dart';
 import 'package:smart_living/core/theme/theme.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_icon_box.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_search_bar.dart';
+import 'package:smart_living/features/weather/presentation/widgets/custom_tab_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -114,9 +115,27 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(height: 23),
                     const CustomSearchBar(hintText: 'Take Smart Steps'),
                     const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: const [
+                        CustomTabItem(
+                          isSelected: true,
+                          title: 'Smartboard',
+                        ),
+                        CustomTabItem(
+                          isSelected: false,
+                          title: 'Recipes',
+                        ),
+                        CustomTabItem(
+                          isSelected: false,
+                          title: 'Integrations',
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
+              const SizedBox(height: 16),
               Expanded(
                 child: ListView.builder(
                   itemCount: iconBoxesMap.keys.length,

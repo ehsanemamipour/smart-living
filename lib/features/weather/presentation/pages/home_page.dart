@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:smart_living/core/consts/consts.dart';
 import 'package:smart_living/core/theme/theme.dart';
+import 'package:smart_living/features/weather/presentation/widgets/custom_card.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_icon_box.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_search_bar.dart';
 import 'package:smart_living/features/weather/presentation/widgets/custom_tab_item.dart';
@@ -136,7 +137,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               const SizedBox(height: 16),
-              Expanded(
+              SizedBox(
+                height: 95,
                 child: ListView.builder(
                   itemCount: iconBoxesMap.keys.length,
                   scrollDirection: Axis.horizontal,
@@ -169,6 +171,68 @@ class _HomePageState extends State<HomePage> {
                       ),
                     );
                   },
+                ),
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomCard(
+                          title: '4',
+                          subtitle: 'active recipes',
+                          icon: SvgPicture.asset(
+                            SvgAssets.flow,
+                            height: 20.7,
+                            width: 25.67,
+                          ),
+                          bottomWidget: Image.asset(ImageAssets.activeRecipes),
+                        ),
+                        CustomCard(
+                          title: '2',
+                          subtitle: 'active lists',
+                          icon: SvgPicture.asset(
+                            SvgAssets.list,
+                            height: 22,
+                            width: 22,
+                          ),
+                          bottomWidget: Image.asset(ImageAssets.activeList),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomCard(
+                          title: '24',
+                          subtitle: 'messages',
+                          icon: SvgPicture.asset(
+                            SvgAssets.message,
+                            height: 23.5,
+                            width: 24,
+                          ),
+                          bottomWidget: Image.asset(ImageAssets.messagesAvatar),
+                        ),
+                        CustomCard(
+                          title: '13:00',
+                          subtitle: 'La Pena, Urla',
+                          icon: SvgPicture.asset(
+                            SvgAssets.dining,
+                            height: 26,
+                            width: 16,
+                          ),
+                          bottomWidget: Text(
+                            'Booking for 2 \nFree Parking',
+                            style: theme.smallStandardBody,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               )
             ],

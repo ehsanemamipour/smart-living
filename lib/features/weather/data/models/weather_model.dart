@@ -5,7 +5,7 @@ class WeatherModel extends Weather {
       : super(
           temperature: temperature,
         );
-  factory WeatherModel.fromJSON(Map<String, dynamic> mapJSON) {
+  factory WeatherModel.fromJson(Map<String, dynamic> mapJSON) {
     return WeatherModel(temperature: mapJSON['current_weather']['temperature']);
   }
 }

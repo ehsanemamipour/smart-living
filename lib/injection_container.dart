@@ -1,6 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart';
 import 'package:smart_living/core/services/http_service.dart';
 import 'package:smart_living/core/utils/network_utils.dart';
 import 'package:smart_living/features/weather/data/datasource/weather_remote_datasource.dart';
@@ -40,8 +40,8 @@ void _injectWeather() {
 
 void _injectExternalLibraries() {
   serviceLocator.registerLazySingleton<HTTPService>(
-    () => DioService(
-      dio: Dio(),
+    () => NetworkService(
+      client: Client(),
     ),
   );
   //Data Connection Checker

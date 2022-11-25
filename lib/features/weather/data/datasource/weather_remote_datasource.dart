@@ -1,4 +1,5 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:smart_living/core/consts/consts.dart';
 import 'package:smart_living/core/errors/exceptions.dart';
 import 'package:smart_living/core/services/http_service.dart';
@@ -15,11 +16,11 @@ class WeatherRemoteDataSourceImpl extends WeatherRemoteDataSource {
   Future<WeatherModel> fetchWeather() async {
     try {
       final result = await httpService.getData(ServerPaths.countris);
-      var weather = WeatherModel.fromJSON(result.data);
+      var weather = WeatherModel.fromJson(jsonDecode(result.body));
 
       return weather;
-    } on DioError catch (e) {
-      throw ServerException(message: e.message);
+    } catch (e) {
+      throw ServerException(message: e.toString());
     }
   }
 }

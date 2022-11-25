@@ -1,17 +1,35 @@
-# smart_living
+Smart Living
+========
 
-A new Flutter project.
+Smart Living is a challenge to demonstrate skills in implementing difficult UI components
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Features
+--------
 
-A few resources to get you started if this is your first Flutter project:
+- Clean architecture
+- Bloc state management
+- Get-it service locator
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Configuration
+------------
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# smart_living
+To clone and run this application, you’ll need to have Git, Dart and Flutter installed on your computer.
+
+From your command line:
+
+    git clone https://github.com/ehsanemamipour/smart_living.git
+
+Contribute
+----------
+
+- Issue Tracker: github.com/ehsanemamipour/smart_living/issues
+- Source Code: github.com/ehsanemamipour/smart_living
+
+Support
+-------
+
+If you are having issues, please let me know.
+I have a mailing address located at: ehsan.emami.p@gmail.com
+
+
